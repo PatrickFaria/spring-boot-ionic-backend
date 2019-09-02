@@ -35,4 +35,12 @@ public class ProdutoService {
 		List<Categoria> categorias = categoriaRepository.findAllById(ids);
 		return repo.findDistinctByNomeContainingAndCategoriasIn(nome, categorias, pageRequest);	
 	}
+	
+	public Produto insert(Produto obj) {
+		obj.setId(null);
+		obj.setNome(obj.getNome());
+		obj.setPreco(obj.getPreco());
+		obj = repo.save(obj);
+		return obj;
+	}
 }
